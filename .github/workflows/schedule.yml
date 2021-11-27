@@ -5,17 +5,14 @@ on:
     branches: master
 
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "* */5 * * *"
 
 jobs:
   update-gist:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Install
-        run: npm ci
       - name: Update gist
-        
         run: node ./index.js
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
